@@ -11,14 +11,26 @@ namespace Proyecto_01
         public void facturar()
         {
             Console.Clear();
-            int hola = 0;
+
+            double[,] precios = new double[5, 2]
+            {
+                {001,1.10},
+                {002,5.10},
+                {003,7.30},
+                {004,32.50},
+                {005,17.95}
+            };
             do
             {
                 try
                 {
                     Console.Clear();
-                    Console.WriteLine("AAD");
-                    hola = int.Parse(Console.ReadLine());
+                    Console.WriteLine("---------------------------------");
+                    Console.WriteLine("001 Pan frances Q");
+                    Console.WriteLine("002 Libra de azucar Q");
+                    Console.WriteLine("003 Caja de galletas Q");
+                    Console.WriteLine("001 Pan frances Q");
+                    h = int.Parse(Console.ReadLine());
                 }
                 catch (Exception ex)
                 {
@@ -26,7 +38,7 @@ namespace Proyecto_01
                     Console.WriteLine(ex.Message);
                 }
             }
-            while (hola != 1);
+            while ();
         }
     }
 }
