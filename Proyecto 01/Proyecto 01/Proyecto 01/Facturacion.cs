@@ -16,13 +16,17 @@ namespace Proyecto_01
         public double suma = 0;
         public string[] productofac = new string[5];
 
-        public void imprimirfactura(string nit, string nombrecliente, double suma)
+        public void imprimirfactura(string nit, string nombrecliente, double suma, string[] productofac)
         {
             Console.WriteLine("--------PublicMart--------");
             Console.WriteLine("Fecha de la factura: " + (DateTime.Now.ToString("dd/MM/yyyy")));
             Console.WriteLine("Número de factura: " + nit);
             Console.WriteLine("Nombre del cliente: " + nombrecliente);
             Console.WriteLine(productofac[0]);
+            Console.WriteLine(productofac[1]);
+            Console.WriteLine(productofac[2]);
+            Console.WriteLine(productofac[3]);
+            Console.WriteLine(productofac[4]);
             Console.ReadKey();
         }
         public string preguntarsino()
@@ -122,6 +126,7 @@ namespace Proyecto_01
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[1] + suma;
                         suma = Math.Round(suma, 2);
+                        productofac[1] = "" + cantidad + " " + productos[1];
 
                         break;
                     case "003":
@@ -129,6 +134,7 @@ namespace Proyecto_01
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[2] + suma;
                         suma = Math.Round(suma, 2);
+                        productofac[2] = "" + cantidad + " " + productos[2];
 
                         break;
                     case "004":
@@ -136,6 +142,7 @@ namespace Proyecto_01
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[3] + suma;
                         suma = Math.Round(suma, 2);
+                        productofac[3] = "" + cantidad + " " + productos[3];
 
                         break;
                     case "005":
@@ -143,6 +150,8 @@ namespace Proyecto_01
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[4] + suma;
                         suma = Math.Round(suma, 2);
+                        productofac[4] = "" + cantidad + " " + productos[4];
+
                         break;
                 }
             }
@@ -187,7 +196,7 @@ namespace Proyecto_01
                         break;
 
                 }
-                metodos.imprimirfactura(nit,nombrecliente,suma);
+                metodos.imprimirfactura(nit,nombrecliente,suma,productofac);
                 Console.ReadKey();
 
             }
