@@ -13,19 +13,26 @@ namespace Proyecto_01
         public string nombrecliente = "";
         public string email = "";
         public string sino;
-        public int contador;
+        public double suma = 0;
+        public string[] productofac = new string[5];
 
+        public void imprimirfactura(string nit, string nombrecliente, double suma)
+        {
+            Console.WriteLine("--------PublicMart--------");
+            Console.WriteLine("Fecha de la factura: " + (DateTime.Now.ToString("dd/MM/yyyy")));
+            Console.WriteLine("Número de factura: " + nit);
+            Console.WriteLine("Nombre del cliente: " + nombrecliente);
+            Console.WriteLine(productofac[0]);
+            Console.ReadKey();
+        }
         public string preguntarsino()
         {
-            int Contador=0;
-            contador = Contador;
 
             bool repetir = false;
             while (repetir != true)
             {
                 Console.WriteLine("¿Desea ingresar más cantidades a este producto? si/no");
                 sino = Console.ReadLine();
-                Contador++;
                 if (sino != "si" && sino != "no")
                 {
                     Console.Clear();
@@ -44,12 +51,12 @@ namespace Proyecto_01
         
         public void facturar()
         {
+
             Facturacion metodos = new Facturacion();
             Console.Clear();
-            string opcion = "";
             bool repetir = false;
-            contador ++;
-            double[] precios = new double[5] { 1.10, 5.00, 7.00, 32.50, 17.95 };
+            int cantidad;
+            double[] precios = new double[5] { 1.10, 5.00, 7.30, 32.50, 17.95 };
             string[] codigos = new string[5] { "001", "002", "003", "004", "005"};
             string[] productos = new string[5] { "Pan frances", "Libra azucar", "Caja de galletas", "Caja de granola", "Litro de juego de naranja" };
             while(repetir != true)
@@ -86,6 +93,7 @@ namespace Proyecto_01
             }
             do
             {
+                string opcion = "";
                 Console.Clear();
                 Console.WriteLine("¿Que producto desea agregar? \n");
                 Console.WriteLine($"{codigos[0]}.\t {productos[0]} Q{precios[0]}");
@@ -103,14 +111,38 @@ namespace Proyecto_01
                 switch (opcion)
                 {
                     case "001":
+                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[0]);
+                        cantidad = int.Parse(Console.ReadLine());
+                        suma = cantidad * precios[0] + suma;
+                        suma = Math.Round(suma,2);
+                        productofac[0] = "" + cantidad + " "+ productos[0];
                         break;
                     case "002":
+                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[1]);
+                        cantidad = int.Parse(Console.ReadLine());
+                        suma = cantidad * precios[1] + suma;
+                        suma = Math.Round(suma, 2);
+
                         break;
                     case "003":
+                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[2]);
+                        cantidad = int.Parse(Console.ReadLine());
+                        suma = cantidad * precios[2] + suma;
+                        suma = Math.Round(suma, 2);
+
                         break;
                     case "004":
+                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[3]);
+                        cantidad = int.Parse(Console.ReadLine());
+                        suma = cantidad * precios[3] + suma;
+                        suma = Math.Round(suma, 2);
+
                         break;
                     case "005":
+                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[4]);
+                        cantidad = int.Parse(Console.ReadLine());
+                        suma = cantidad * precios[4] + suma;
+                        suma = Math.Round(suma, 2);
                         break;
                 }
             }
@@ -118,55 +150,50 @@ namespace Proyecto_01
 
             try
             {
+                int opcion = 0;
                 Console.WriteLine("Seleccione su método de pago:");
                 Console.WriteLine("1. Efectivo");
                 Console.WriteLine("2. Tarjeta de crédito");
+                Console.Write("Ingrese el número de su opción: ");
+                opcion = int.Parse(Console.ReadLine());
 
-                int opcions = 0;
-                while (opcions < 1 || opcions > 2)
+                switch (opcion)
                 {
-                    Console.Write("Ingrese el número de su opción: ");
-                    opcions = int.Parse(Console.ReadLine());
-                }
+                    case 1:
+                        break;
+                    case 2:
+                        int puntos = 0;
 
-                string metodoPago = opcions == 1 ? "Efectivo" : "Tarjeta de crédito";
-                if (opcions == 2)
-                {
-                    int puntos = 0;
-                    double gasto;
+                        if (this.suma > 10.00 && this.suma <= 50.00)
+                        {
+                            puntos = (int)suma / 10;
+                            Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
+                            Console.ReadKey();
 
+                        }
+                        else if (this.suma > 50 && suma <= 150)
+                        {
+                            puntos = ((int)suma / 10) * 2;
+                            Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
+                            Console.ReadKey();
 
-                    gasto = contador * 10;
-
-                    if (gasto > 0 && gasto <= 50)
-                    {
-                        puntos = ((int)gasto / 10) * 1;
-                        Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
-                        Console.ReadKey();
-
-                    }
-                    else if (gasto > 50 && gasto <= 150)
-                    {
-                        puntos = ((int)gasto / 10) * 2;
-                        Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
-                        Console.ReadKey();
-
-                    }
-                    else if (gasto > 150)
-                    {
-                        puntos = ((int)gasto / 15) * 3;
-                        Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
-                        Console.ReadKey();
-
-                    }
+                        }
+                        else if (suma > 150)
+                        {
+                            puntos = ((int)suma / 15) * 3;
+                            Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
+                            Console.ReadKey();
+                        }
+                        break;
 
                 }
+                metodos.imprimirfactura(nit,nombrecliente,suma);
                 Console.ReadKey();
-                    
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                    Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
             }
 
 
