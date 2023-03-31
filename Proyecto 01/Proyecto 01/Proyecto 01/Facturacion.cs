@@ -17,12 +17,15 @@ namespace Proyecto_01
 
         public string preguntarsino()
         {
+            int Contador=0;
+            contador = Contador;
+
             bool repetir = false;
             while (repetir != true)
             {
                 Console.WriteLine("¿Desea ingresar más cantidades a este producto? si/no");
                 sino = Console.ReadLine();
-                contador++;
+                Contador++;
                 if (sino != "si" && sino != "no")
                 {
                     Console.Clear();
@@ -132,7 +135,7 @@ namespace Proyecto_01
                     double gasto;
 
 
-                    gasto = contador * precios[5];
+                    gasto = contador * 10;
 
                     if (gasto > 0 && gasto <= 50)
                     {
