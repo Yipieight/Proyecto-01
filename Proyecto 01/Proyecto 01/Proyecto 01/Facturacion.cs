@@ -48,6 +48,7 @@ namespace Proyecto_01
             Console.Clear();
             string opcion = "";
             bool repetir = false;
+            contador ++;
             double[] precios = new double[5] { 1.10, 5.00, 7.00, 32.50, 17.95 };
             string[] codigos = new string[5] { "001", "002", "003", "004", "005"};
             string[] productos = new string[5] { "Pan frances", "Libra azucar", "Caja de galletas", "Caja de granola", "Litro de juego de naranja" };
@@ -140,20 +141,24 @@ namespace Proyecto_01
                     if (gasto > 0 && gasto <= 50)
                     {
                         puntos = ((int)gasto / 10) * 1;
+                        Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
+                        Console.ReadKey();
 
                     }
                     else if (gasto > 50 && gasto <= 150)
                     {
                         puntos = ((int)gasto / 10) * 2;
+                        Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
+                        Console.ReadKey();
 
                     }
                     else if (gasto > 150)
                     {
                         puntos = ((int)gasto / 15) * 3;
+                        Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
+                        Console.ReadKey();
 
                     }
-                    Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
-                    Console.ReadKey();
 
                 }
                 Console.ReadKey();
