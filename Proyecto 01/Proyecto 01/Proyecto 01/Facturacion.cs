@@ -11,7 +11,7 @@ namespace Proyecto_01
     {
         public string nit = "";
         public string nombrecliente = "";
-        public string email = "";
+        public string email = ""; 
         public string sino;
         public double suma = 0;
         public string[] productofac = new string[5];
@@ -21,12 +21,8 @@ namespace Proyecto_01
             Console.WriteLine("--------PublicMart--------");
             Console.WriteLine("Fecha de la factura: " + (DateTime.Now.ToString("dd/MM/yyyy")));
             Console.WriteLine("Número de factura: " + nit);
-            Console.WriteLine("Nombre del cliente: " + nombrecliente);
-            Console.WriteLine(productofac[0]);
-            Console.WriteLine(productofac[1]);
-            Console.WriteLine(productofac[2]);
-            Console.WriteLine(productofac[3]);
-            Console.WriteLine(productofac[4]);
+            Console.WriteLine("Nombre del cliente: " + nombrecliente + "\n");
+            Console.WriteLine(productofac);
             Console.ReadKey();
         }
         public string preguntarsino()
