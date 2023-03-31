@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Proyecto_01
@@ -24,6 +25,8 @@ namespace Proyecto_01
             Console.WriteLine(productofac[2]);
             Console.WriteLine(productofac[3]);
             Console.WriteLine(productofac[4]);
+            Console.WriteLine("El subtutoal de la compra es: "+ suma);
+            Console.WriteLine("El total de la compra incluido impuestos es: " + impuestos(suma));
             Console.ReadKey();
         }
         public string preguntarsino()
@@ -49,6 +52,14 @@ namespace Proyecto_01
             return sino;
         }
 
+        public double impuestos(double suma)
+        {
+            suma -= (suma*0.12)+(suma*0.05);
+            double impuesto = suma;
+
+            return impuesto;
+
+        }
 
         public void facturar()
         {
@@ -203,7 +214,6 @@ namespace Proyecto_01
             {
                 Console.WriteLine(ex.Message);
             }
-
 
         }
     }
