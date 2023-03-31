@@ -13,7 +13,7 @@ namespace Proyecto_01
         public double suma = 0;
         public string[] productofac = new string[5];
 
-        public void imprimirfactura(string nit, string nombrecliente, double suma, string[] productofac)
+        public void imprimirfactura(string nit, string nombrecliente, double suma, string[] productofac,string email)
         {
             Console.WriteLine("--------PublicMart--------");
             Console.WriteLine("Fecha de la factura: " + (DateTime.Now.ToString("dd/MM/yyyy")));
@@ -24,6 +24,7 @@ namespace Proyecto_01
             Console.WriteLine(productofac[2]);
             Console.WriteLine(productofac[3]);
             Console.WriteLine(productofac[4]);
+            Console.WriteLine("Una copia de la factura se enviará al correo: " + email);
             Console.ReadKey();
         }
         public string preguntarsino()
@@ -32,7 +33,7 @@ namespace Proyecto_01
             bool repetir = false;
             while (repetir != true)
             {
-                Console.WriteLine("¿Desea ingresar más cantidades a este producto? si/no");
+                Console.WriteLine("¿Desea ingresar más producto? si/no");
                 sino = Console.ReadLine();
                 if (sino != "si" && sino != "no")
                 {
@@ -92,9 +93,10 @@ namespace Proyecto_01
                     Console.ReadKey();
                 }
             }
+            int[] sumacantidad = new int[5];
+            int contar = 0;
             do
             {
-                int sumacantidad = 0;
                 string opcion = "";
                 Console.Clear();
                 Console.WriteLine("¿Que producto desea agregar? \n");
@@ -113,46 +115,49 @@ namespace Proyecto_01
                 switch (opcion)
                 {
                     case "001":
-                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[0]);
+                        Console.WriteLine("Cuanta cantidad necesita para: " + productos[0]);
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[0] + suma;
                         suma = Math.Round(suma, 2);
-                        sumacantidad += cantidad;
-                        productofac[0] = "" + sumacantidad + " " + productos[0];
+                        sumacantidad[0] += cantidad;
+                        productofac[contar] = "" + productos[0] + " cantidad: " + sumacantidad[0] + " precio: Q" + precios[0];
                         break;
                     case "002":
-                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[1]);
+                        Console.WriteLine("Cuanta cantidad necesita para: " + productos[1]);
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[1] + suma;
                         suma = Math.Round(suma, 2);
-                        productofac[1] = "" + cantidad + " " + productos[1];
-
+                        sumacantidad[1] += cantidad;
+                        productofac[contar] = "" + productos[1] + " cantidad: " + sumacantidad[1] + " precio: Q" + precios[1];
                         break;
                     case "003":
-                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[2]);
+                        Console.WriteLine("Cuanta cantidad necesita para: " + productos[2]);
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[2] + suma;
                         suma = Math.Round(suma, 2);
-                        productofac[2] = "" + cantidad + " " + productos[2];
+                        sumacantidad[2] += cantidad;
+                        productofac[contar] = "" + productos[2] + " cantidad: " + sumacantidad[2] + " precio: Q" + precios[2];
 
                         break;
                     case "004":
-                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[3]);
+                        Console.WriteLine("Cuanta cantidad necesita para: " + productos[3]);
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[3] + suma;
                         suma = Math.Round(suma, 2);
-                        productofac[3] = "" + cantidad + " " + productos[3];
+                        sumacantidad[3] += cantidad;
+                        productofac[contar] = "" + productos[3] + " cantidad: " + sumacantidad[3] + " precio: Q" + precios[3];
 
                         break;
                     case "005":
-                        Console.WriteLine("Cuanta cantidad necesita para el " + productos[4]);
+                        Console.WriteLine("Cuanta cantidad necesita para: " + productos[4]);
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[4] + suma;
                         suma = Math.Round(suma, 2);
-                        productofac[4] = "" + cantidad + " " + productos[4];
-
+                        sumacantidad[4] += cantidad;
+                        productofac[contar] = "" + productos[4] + " cantidad: " + sumacantidad[4] + " precio: Q" + precios[4];
                         break;
                 }
+                contar++;
             }
             while (metodos.preguntarsino() == "si");
 
@@ -195,7 +200,7 @@ namespace Proyecto_01
                         break;
 
                 }
-                metodos.imprimirfactura(nit, nombrecliente, suma, productofac);
+                metodos.imprimirfactura(nit, nombrecliente, suma, productofac, email);
                 Console.ReadKey();
 
             }
