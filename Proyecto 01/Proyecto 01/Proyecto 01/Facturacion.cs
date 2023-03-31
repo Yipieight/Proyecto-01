@@ -105,6 +105,7 @@ namespace Proyecto_01
                         break;
                 }
             }
+
             while (metodos.preguntarsino() == "si");
         }
     }
