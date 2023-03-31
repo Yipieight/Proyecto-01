@@ -9,7 +9,6 @@ namespace Proyecto_01
         public string nit = "";
         public string nombrecliente = "";
         public string email = "";
-        public string sino;
         public double suma = 0;
         public string[] productofac = new string[5];
         public string efeotar;
@@ -60,7 +59,7 @@ namespace Proyecto_01
         }
         public string preguntarsino()
         {
-
+            string sino = "";
             bool repetir = false;
             while (repetir != true)
             {
@@ -81,6 +80,18 @@ namespace Proyecto_01
             return sino;
         }
 
+        public void volverafacturar()
+        {
+            Console.Clear();
+            Facturacion metodos = new Facturacion();
+            string sino = "";
+            while(sino != "no")
+            {
+                metodos.facturar();
+                Console.WriteLine("¿Desea ingresar una nueva factura?");
+                sino = Console.ReadLine();
+            }
+        }
 
         public void facturar()
         {
@@ -197,7 +208,7 @@ namespace Proyecto_01
 
             }
             while (metodos.preguntarsino() == "si");
-
+            
             try
             {
                 int opcion = 0;

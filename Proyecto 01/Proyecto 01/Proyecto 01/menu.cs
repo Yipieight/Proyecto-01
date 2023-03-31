@@ -25,6 +25,7 @@ namespace Proyecto_01
             int opcion = 0;
             do
             {
+                opcion = 0;
                 Console.Clear();
                 Console.WriteLine("-----------Menú------------");
                 Console.WriteLine("1.Facturacion");
@@ -50,7 +51,7 @@ namespace Proyecto_01
                 {
                     case 1:
                         Facturacion facturar = new Facturacion();
-                        facturar.facturar();
+                        facturar.volverafacturar();
                         break;
                     case 2:
                         break;
@@ -63,8 +64,6 @@ namespace Proyecto_01
             Console.Clear();
             Console.WriteLine("¡Nos vemos!, regrese pronto.");
             Thread.Sleep(2500);
-                        
-            
             
         }
     }
