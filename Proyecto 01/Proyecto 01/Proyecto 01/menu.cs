@@ -37,30 +37,27 @@ namespace Proyecto_01
                     if (opcion < 1 || opcion > 3)
                     {
                         Console.Clear();
-                        throw new Exception("Debe ingresar un número....");
+                        throw new Exception("Debe ingresar un número entre 1 y 3....");
                     }
-                    else
-                    {
-                        switch (opcion)
-                        {
-                            case 1:
-                                Facturacion facturar = new Facturacion();
-                                facturar.facturar();
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                        }
-                    }
-                   
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
                     Console.Clear();
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(e.Message);
                     Console.ReadKey();
                 }
+                switch (opcion)
+                {
+                    case 1:
+                        Facturacion facturar = new Facturacion();
+                        facturar.facturar();
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
+
             }
             while (opcion != 3);
             Console.Clear();
