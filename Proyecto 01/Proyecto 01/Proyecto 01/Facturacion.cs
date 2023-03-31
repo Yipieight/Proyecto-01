@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Proyecto_01
 {
     internal class Facturacion
     {
+        public int contarprod = 0;
         public string nit = "";
         public string nombrecliente = "";
-        public string email = ""; 
+        public string email = "";
         public string sino;
         public double suma = 0;
         public string[] productofac = new string[5];
@@ -22,7 +19,11 @@ namespace Proyecto_01
             Console.WriteLine("Fecha de la factura: " + (DateTime.Now.ToString("dd/MM/yyyy")));
             Console.WriteLine("Número de factura: " + nit);
             Console.WriteLine("Nombre del cliente: " + nombrecliente + "\n");
-            Console.WriteLine(productofac);
+            Console.WriteLine(productofac[0]);
+            Console.WriteLine(productofac[1]);
+            Console.WriteLine(productofac[2]);
+            Console.WriteLine(productofac[3]);
+            Console.WriteLine(productofac[4]);
             Console.ReadKey();
         }
         public string preguntarsino()
@@ -48,7 +49,7 @@ namespace Proyecto_01
             return sino;
         }
 
-        
+
         public void facturar()
         {
 
@@ -57,9 +58,9 @@ namespace Proyecto_01
             bool repetir = false;
             int cantidad;
             double[] precios = new double[5] { 1.10, 5.00, 7.30, 32.50, 17.95 };
-            string[] codigos = new string[5] { "001", "002", "003", "004", "005"};
+            string[] codigos = new string[5] { "001", "002", "003", "004", "005" };
             string[] productos = new string[5] { "Pan frances", "Libra azucar", "Caja de galletas", "Caja de granola", "Litro de juego de naranja" };
-            while(repetir != true)
+            while (repetir != true)
             {
                 try
                 {
@@ -84,15 +85,16 @@ namespace Proyecto_01
                     }
                     repetir = true;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.Clear();
                     Console.WriteLine(ex.Message);
                     Console.ReadKey();
-                }            
+                }
             }
             do
             {
+                int sumacantidad = 0;
                 string opcion = "";
                 Console.Clear();
                 Console.WriteLine("¿Que producto desea agregar? \n");
@@ -114,8 +116,9 @@ namespace Proyecto_01
                         Console.WriteLine("Cuanta cantidad necesita para el " + productos[0]);
                         cantidad = int.Parse(Console.ReadLine());
                         suma = cantidad * precios[0] + suma;
-                        suma = Math.Round(suma,2);
-                        productofac[0] = "" + cantidad + " "+ productos[0];
+                        suma = Math.Round(suma, 2);
+                        sumacantidad += cantidad;
+                        productofac[0] = "" + sumacantidad + " " + productos[0];
                         break;
                     case "002":
                         Console.WriteLine("Cuanta cantidad necesita para el " + productos[1]);
@@ -192,7 +195,7 @@ namespace Proyecto_01
                         break;
 
                 }
-                metodos.imprimirfactura(nit,nombrecliente,suma,productofac);
+                metodos.imprimirfactura(nit, nombrecliente, suma, productofac);
                 Console.ReadKey();
 
             }
