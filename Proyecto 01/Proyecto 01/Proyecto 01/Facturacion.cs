@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace Proyecto_01
         public string nombrecliente = "";
         public string email = "";
         public string sino;
+        public int contador;
 
         public string preguntarsino()
         {
@@ -20,6 +22,7 @@ namespace Proyecto_01
             {
                 Console.WriteLine("¿Desea ingresar más cantidades a este producto? si/no");
                 sino = Console.ReadLine();
+                contador++;
                 if (sino != "si" && sino != "no")
                 {
                     Console.Clear();
@@ -34,6 +37,8 @@ namespace Proyecto_01
             }
             return sino;
         }
+
+        
         public void facturar()
         {
             Facturacion metodos = new Facturacion();
@@ -105,8 +110,58 @@ namespace Proyecto_01
                         break;
                 }
             }
-
             while (metodos.preguntarsino() == "si");
+
+            try
+            {
+                Console.WriteLine("Seleccione su método de pago:");
+                Console.WriteLine("1. Efectivo");
+                Console.WriteLine("2. Tarjeta de crédito");
+
+                int opcions = 0;
+                while (opcions < 1 || opcions > 2)
+                {
+                    Console.Write("Ingrese el número de su opción: ");
+                    opcions = int.Parse(Console.ReadLine());
+                }
+
+                string metodoPago = opcions == 1 ? "Efectivo" : "Tarjeta de crédito";
+                if (opcions == 2)
+                {
+                    int puntos = 0;
+                    double gasto;
+
+
+                    gasto = contador * precios[5];
+
+                    if (gasto > 0 && gasto <= 50)
+                    {
+                        puntos = ((int)gasto / 10) * 1;
+
+                    }
+                    else if (gasto > 50 && gasto <= 150)
+                    {
+                        puntos = ((int)gasto / 10) * 2;
+
+                    }
+                    else if (gasto > 150)
+                    {
+                        puntos = ((int)gasto / 15) * 3;
+
+                    }
+                    Console.WriteLine("Estos son los puntos obtenidos por usar Tarjeta de credito como metodo de pago: " + puntos);
+                    Console.ReadKey();
+
+                }
+                Console.ReadKey();
+                    
+            }
+            catch(Exception ex)
+            {
+                    Console.WriteLine(ex.Message);
+            }
+
+
         }
     }
 }
