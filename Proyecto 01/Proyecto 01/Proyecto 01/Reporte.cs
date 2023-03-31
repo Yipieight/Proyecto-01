@@ -8,5 +8,6 @@ namespace Proyecto_01
 {
     internal class Reporte
     {
+        
     }
 }

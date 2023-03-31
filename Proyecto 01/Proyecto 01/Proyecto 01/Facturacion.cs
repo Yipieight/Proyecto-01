@@ -15,6 +15,19 @@ namespace Proyecto_01
         public string efeotar;
         public int totalproducto = 0;
 
+        public Facturacion()
+        {
+
+        }
+        public string numfactura(int puntos, int cantidad)
+        {
+            Random rnd = new Random();
+            int num = rnd.Next(1, 100);
+
+            int numerofactura = (((2 * num) + (puntos * puntos)) + (2021 * cantidad)) % 10000;
+            string numeroCadena = numerofactura.ToString().PadLeft(4, '0');
+            return numeroCadena;
+        }
         public double impuestos(double suma)
         {
             double impuesto = (suma * 0.12) + (suma * 0.05);
@@ -27,23 +40,23 @@ namespace Proyecto_01
             Console.Clear();
             Console.WriteLine("-------------------------PublicMart------------------------- \n");
             Console.WriteLine("Fecha de la factura: " + (DateTime.Now.ToString("dd/MM/yyyy")));
-            Console.WriteLine("Número de factura: " + nit);
+            Console.WriteLine("Número de nit " + nit);
             Console.WriteLine("Nombre del cliente: " + nombrecliente + "\n");
-            Console.WriteLine("---------------------------Lista----------------------------");
+            Console.WriteLine("---------------------------Lista---------------------------- \n");
             Console.WriteLine(productofac[0]);
             Console.WriteLine(productofac[1]);
             Console.WriteLine(productofac[2]);
             Console.WriteLine(productofac[3]);
             Console.WriteLine(productofac[4] + "\n");
-            Console.WriteLine("-------------------------Información------------------------");
+            Console.WriteLine("-------------------------Información------------------------\n");
             Console.WriteLine("La cantidad de productos es: " + totalproducto);
             Console.WriteLine("El subtutoal de la compra es: " + suma);
             Console.WriteLine("Los total de los impuestos es: " + impuestos(suma));
             Console.WriteLine("El total incluyendo impuestos es: " + (suma - impuestos(suma)));
             Console.WriteLine("Una copia de la factura se enviará al correo: " + email);
             Console.WriteLine("El método de pago es: " + efeotar);
-            Console.WriteLine("El total de puntos  acumulados es: " + efeotar);
-            Console.ReadKey();
+            Console.WriteLine("El total de puntos  acumulados es: " + efeotar +"\n");
+            Console.WriteLine("----------------------Factura No." + numfactura(puntos, totalproducto) + "----------------------");
         }
         public string preguntarsino()
         {
