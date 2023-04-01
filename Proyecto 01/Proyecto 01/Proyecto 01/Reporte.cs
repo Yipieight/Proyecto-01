@@ -21,13 +21,17 @@ namespace Proyecto_01
             {
                 Console.WriteLine("Total de facturas son: " + Facturacion.contar +"\n");
                 Console.WriteLine("Total de productos vendidos: " + Facturacion.totalproducto +"\n");
-                Console.WriteLine("--------------------Total de produtos--------------------\n");
+                Console.WriteLine("--------------------Total-de-produtos--------------------\n");
                 Console.WriteLine(Facturacion.productofac[0]);
                 Console.WriteLine(Facturacion.productofac[1]);
                 Console.WriteLine(Facturacion.productofac[2]);
                 Console.WriteLine(Facturacion.productofac[3]);
                 Console.WriteLine(Facturacion.productofac[4]);
                 Console.WriteLine("---------------------------------------------------------\n");
+                Console.WriteLine("Total de puntos acumulados: " + Facturacion.sumapuntos + "\n");
+                Console.WriteLine("Total de ventas al crédito: " + Facturacion.tottarje + "\n");
+                Console.WriteLine("Total de ventas al contado: " + Facturacion.totefectivo +"\n");
+                Console.WriteLine("Total de las ventas de todas las facturas: " + Facturacion.sumatotal +"\n");
                 Console.ReadKey();
             }
         }
