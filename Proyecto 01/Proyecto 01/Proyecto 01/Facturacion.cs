@@ -10,9 +10,9 @@ namespace Proyecto_01
         public string nombrecliente = "";
         public string email = "";
         public double suma = 0;
-        public string[] productofac = new string[5];
+        public static string[] productofac = new string[5];
         public string efeotar;
-        public int totalproducto = 0;
+        public static int totalproducto;
         public static int contar = 0;
 
 

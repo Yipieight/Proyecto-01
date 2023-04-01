@@ -11,6 +11,7 @@ namespace Proyecto_01
         
         public void reporte()
         {
+            Console.Clear();
             if (Facturacion.contar == 0)
             {
                 Console.WriteLine("No tienes facturas...");
@@ -18,7 +19,15 @@ namespace Proyecto_01
             }
             else
             {
-                Console.WriteLine("Total de facturas son: " + Facturacion.contar);
+                Console.WriteLine("Total de facturas son: " + Facturacion.contar +"\n");
+                Console.WriteLine("Total de productos vendidos: " + Facturacion.totalproducto +"\n");
+                Console.WriteLine("--------------------Total de produtos--------------------\n");
+                Console.WriteLine(Facturacion.productofac[0]);
+                Console.WriteLine(Facturacion.productofac[1]);
+                Console.WriteLine(Facturacion.productofac[2]);
+                Console.WriteLine(Facturacion.productofac[3]);
+                Console.WriteLine(Facturacion.productofac[4]);
+                Console.WriteLine("---------------------------------------------------------\n");
                 Console.ReadKey();
             }
         }
