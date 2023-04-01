@@ -13,6 +13,7 @@ namespace Proyecto_01
         public string[] productofac = new string[5];
         public string efeotar;
         public int totalproducto = 0;
+        public int contar = 0;
 
         public Facturacion()
         {
@@ -80,14 +81,21 @@ namespace Proyecto_01
             return sino;
         }
 
+        public void totalfacturas()
+        {
+            int contar = 0;
+            contar++;
+            this.contar = contar;
+        }
         public void volverafacturar()
         {
-            Console.Clear();
             Facturacion metodos = new Facturacion();
             string sino = "";
             while(sino != "no")
             {
+                totalfacturas();
                 metodos.facturar();
+                Console.Clear();
                 Console.WriteLine("¿Desea ingresar una nueva factura?");
                 sino = Console.ReadLine();
             }

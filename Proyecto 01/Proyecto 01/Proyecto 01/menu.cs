@@ -54,6 +54,8 @@ namespace Proyecto_01
                         facturar.volverafacturar();
                         break;
                     case 2:
+                        Reporte reporte = new Reporte();
+                        reporte.reporte();
                         break;
                     case 3:
                         break;
