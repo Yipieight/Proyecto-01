@@ -10,6 +10,7 @@ namespace Proyecto_01
 {
     internal class menu
     {
+
         public void bienvenida()
         {
             Console.WriteLine("¡Bienvenido al Supermercado PublicMart!");
@@ -20,7 +21,9 @@ namespace Proyecto_01
         }
         static void Main(string[] args)
         {
+            Facturacion facturar = new Facturacion();
             menu menu = new menu();
+            Reporte reporte = new Reporte();
             //menu.bienvenida();
             int opcion = 0;
             do
@@ -50,11 +53,9 @@ namespace Proyecto_01
                 switch (opcion)
                 {
                     case 1:
-                        Facturacion facturar = new Facturacion();
                         facturar.volverafacturar();
                         break;
                     case 2:
-                        Reporte reporte = new Reporte();
                         reporte.reporte();
                         break;
                     case 3:

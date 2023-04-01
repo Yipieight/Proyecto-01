@@ -13,12 +13,9 @@ namespace Proyecto_01
         public string[] productofac = new string[5];
         public string efeotar;
         public int totalproducto = 0;
-        public int contar = 0;
+        public static int contar = 0;
 
-        public Facturacion()
-        {
 
-        }
         public string numfactura(int puntos, int cantidad)
         {
             Random rnd = new Random();
@@ -81,20 +78,13 @@ namespace Proyecto_01
             return sino;
         }
 
-        public void totalfacturas()
-        {
-            int contar = 0;
-            contar++;
-            this.contar = contar;
-        }
         public void volverafacturar()
         {
-            Facturacion metodos = new Facturacion();
             string sino = "";
             while(sino != "no")
             {
-                totalfacturas();
-                metodos.facturar();
+                contar++;
+                facturar();
                 Console.Clear();
                 Console.WriteLine("¿Desea ingresar una nueva factura?");
                 sino = Console.ReadLine();
@@ -103,8 +93,6 @@ namespace Proyecto_01
 
         public void facturar()
         {
-
-            Facturacion metodos = new Facturacion();
             Console.Clear();
             bool repetir = false;
             int cantidad;
@@ -215,7 +203,7 @@ namespace Proyecto_01
                 }
 
             }
-            while (metodos.preguntarsino() == "si");
+            while (preguntarsino() == "si");
             
             try
             {
@@ -258,7 +246,7 @@ namespace Proyecto_01
                         break;
 
                 }
-                metodos.imprimirfactura(nit, nombrecliente, suma, productofac, email, efeotar, puntos, totalproducto);
+                imprimirfactura(nit, nombrecliente, suma, productofac, email, efeotar, puntos, totalproducto);
                 Console.ReadKey();
 
             }
