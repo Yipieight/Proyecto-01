@@ -24,7 +24,7 @@ namespace Proyecto_01
             Facturacion facturar = new Facturacion();
             menu menu = new menu();
             Reporte reporte = new Reporte();
-            //menu.bienvenida();
+            menu.bienvenida();
             int opcion = 0;
             do
             {

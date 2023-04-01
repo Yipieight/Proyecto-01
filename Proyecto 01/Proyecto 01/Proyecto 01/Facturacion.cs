@@ -21,70 +21,10 @@ namespace Proyecto_01
         public static int totefectivo;
         public int puntos;
 
-
-        public string numfactura(int puntos, int cantidad)
-        {
-            Random rnd = new Random();
-            int num = rnd.Next(1, 1000);
-            int numerofactura = (((2 * 2) + (puntos * puntos)) + (2021 * cantidad)) % 10000;
-            string numeroCadena = numerofactura.ToString().PadLeft(4, '0');
-            return numeroCadena;
-        }
-        public double impuestos(double suma)
-        {
-            double impuesto = (suma * 0.12) + (suma * 0.05);
-            return impuesto;
-        }
-        public void imprimirfactura(string nit, string nombrecliente, double suma, string[] productofac,string email, string efeotar, int puntos, int totalproducto)
-        {
-            Console.Clear();
-            Console.WriteLine("-------------------------PublicMart------------------------- \n");
-            Console.WriteLine("Fecha de la factura: " + (DateTime.Now.ToString("dd/MM/yyyy")));
-            Console.WriteLine("Número de nit " + nit);
-            Console.WriteLine("Nombre del cliente: " + nombrecliente + "\n");
-            Console.WriteLine("---------------------------Lista---------------------------- \n");
-            Console.WriteLine(productofac[0]);
-            Console.WriteLine(productofac[1]);
-            Console.WriteLine(productofac[2]);
-            Console.WriteLine(productofac[3]);
-            Console.WriteLine(productofac[4] + "\n");
-            Console.WriteLine("-------------------------Información------------------------\n");
-            Console.WriteLine("La cantidad de productos es: " + totalproducto);
-            Console.WriteLine("El subtotal de la compra es: " + suma);
-            Console.WriteLine("Los total de los impuestos es: " + impuestos(suma));
-            Console.WriteLine("El total incluyendo impuestos es: " + (suma + impuestos(suma)));
-            Console.WriteLine("Una copia de la factura se enviará al correo: " + email);
-            Console.WriteLine("El método de pago es: " + efeotar);
-            Console.WriteLine("El total de puntos  acumulados es: " + puntos +"\n");
-            Console.WriteLine("----------------------Factura No." + numfactura(puntos, totalproducto) + "----------------------");
-        }
-        public string preguntarsino()
-        {
-            string sino = "";
-            bool repetir = false;
-            while (repetir != true)
-            {
-                Console.WriteLine("¿Desea ingresar más producto? si/no");
-                sino = Console.ReadLine();
-                if (sino != "si" && sino != "no")
-                {
-                    Console.Clear();
-                    Console.WriteLine("Debe ingresar si o no....");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else
-                {
-                    repetir = true;
-                }
-            }
-            return sino;
-        }
-
         public void volverafacturar()
         {
             string sino = "";
-            while(sino != "no")
+            while (sino != "no")
             {
                 contar++;
                 facturar();
@@ -93,7 +33,6 @@ namespace Proyecto_01
                 sino = Console.ReadLine();
             }
         }
-
         public void facturar()
         {
             Console.Clear();
@@ -113,7 +52,7 @@ namespace Proyecto_01
                     {
                         throw new Exception("Debe ingresar un texto, vuelva a colocar todo los datos...");
                     }
-                    Console.WriteLine("Ingrese un e-mail." );
+                    Console.WriteLine("Ingrese un e-mail.");
                     email = Console.ReadLine();
                     if (email == "")
                     {
@@ -138,7 +77,7 @@ namespace Proyecto_01
                             throw new Exception("El e-mail debe tener .com...");
                         }
                     }
-                    
+
                     Console.WriteLine("Ingrese un nit");
                     nit = Console.ReadLine();
                     if (nit.Any(char.IsLetter) || nit == "")
@@ -155,6 +94,7 @@ namespace Proyecto_01
                 }
             }
             int[] sumacantidad = new int[5];
+            string[] sumaproducto = new string[5];
             suma = 0;
             string sino = "";
             int sumarfac = 0;
@@ -182,7 +122,7 @@ namespace Proyecto_01
                         Console.Clear();
                         throw new Exception("Debe ingresar el codigo completo incluyendo los 0...");
                     }
-                    else if(int.Parse(opcion) > 5 || int.Parse(opcion) <= 0)
+                    else if (int.Parse(opcion) > 5 || int.Parse(opcion) <= 0)
                     {
                         Console.Clear();
                         throw new Exception("Debe ingresar el codigo desde 001 entre 005...");
@@ -199,9 +139,10 @@ namespace Proyecto_01
                                     suma = cantidad * precios[0] + suma;
                                     suma = Math.Round(suma, 2);
                                     sumacantidad[0] += cantidad;
+                                    sumaproducto[0] += suma;
                                     totalproducto += sumacantidad[0];
                                     sumarfac += sumacantidad[0];
-                                    productofac[0] = "" + productos[0] + " cantidad: " + sumacantidad[0] + " precio: Q" + precios[0];
+                                    productofac[0] = "" + productos[0] + " cantidad: " + sumacantidad[0] + " precio: Q" + precios[0] + " = Q";
                                 }
                                 else
                                 {
@@ -217,8 +158,9 @@ namespace Proyecto_01
                                     suma = Math.Round(suma, 2);
                                     sumacantidad[1] += cantidad;
                                     totalproducto += sumacantidad[1];
+                                    sumaproducto[1] += suma;
                                     sumarfac += sumacantidad[1];
-                                    productofac[1] = "" + productos[1] + " cantidad: " + sumacantidad[1] + " precio: Q" + precios[1];
+                                    productofac[1] = "" + productos[1] + " cantidad: " + sumacantidad[1] + " precio: Q" + precios[1] + " = Q";
                                 }
                                 else
                                 {
@@ -234,8 +176,9 @@ namespace Proyecto_01
                                     suma = Math.Round(suma, 2);
                                     sumacantidad[2] += cantidad;
                                     totalproducto += sumacantidad[2];
+                                    sumaproducto[2] += suma;
                                     sumarfac += sumacantidad[2];
-                                    productofac[2] = "" + productos[2] + " cantidad: " + sumacantidad[2] + " precio: Q" + precios[2];
+                                    productofac[2] = "" + productos[2] + " cantidad: " + sumacantidad[2] + " precio: Q" + precios[2] + " = Q";
                                 }
                                 else
                                 {
@@ -251,8 +194,9 @@ namespace Proyecto_01
                                     suma = Math.Round(suma, 2);
                                     sumacantidad[3] += cantidad;
                                     totalproducto += sumacantidad[3];
+                                    sumaproducto[3] += suma;
                                     sumarfac += sumacantidad[3];
-                                    productofac[3] = "" + productos[3] + " cantidad: " + sumacantidad[3] + " precio: Q" + precios[3];
+                                    productofac[3] = "" + productos[3] + " cantidad: " + sumacantidad[3] + " precio: Q" + precios[3] + " = Q";
                                 }
                                 else
                                 {
@@ -268,8 +212,9 @@ namespace Proyecto_01
                                     suma = Math.Round(suma, 2);
                                     sumacantidad[4] += cantidad;
                                     totalproducto += sumacantidad[4];
+                                    sumaproducto[4] += suma;
                                     sumarfac += sumacantidad[4];
-                                    productofac[4] = "" + productos[4] + " cantidad: " + sumacantidad[4] + " precio: Q" + precios[4];
+                                    productofac[4] = "" + productos[4] + " cantidad: " + sumacantidad[4] + " precio: Q" + precios[4] + " = Q";
                                 }
                                 else
                                 {
@@ -308,26 +253,26 @@ namespace Proyecto_01
                     case 2:
                         efeotar = "Tarjeta de credito";
                         tottarje += sumacantidad[0] + sumacantidad[1] + sumacantidad[2] + sumacantidad[3] + sumacantidad[4];
-                        if ((suma + impuestos(suma)) > 0 && (suma + impuestos(suma)) <= 50)
+                        if (totalimpuestos(suma) > 0 && totalimpuestos(suma) <= 50)
                         {
-                            puntos = (int)(suma + impuestos(suma)) / 10;
+                            puntos = (int)totalimpuestos(suma) / 10;
                             sumapuntos += puntos;
 
                         }
-                        else if ((suma + impuestos(suma)) > 50 && (suma + impuestos(suma)) <= 150)
+                        else if (totalimpuestos(suma) > 50 && totalimpuestos(suma) <= 150)
                         {
-                            puntos = ((int)(suma + impuestos(suma)) / 10) * 2;
+                            puntos = ((int)totalimpuestos(suma) / 10) * 2;
                             sumapuntos += puntos;
                         }
-                        else if ((suma + impuestos(suma)) > 150)
+                        else if (totalimpuestos(suma) > 150)
                         {
-                            puntos = ((int)(suma + impuestos(suma)) / 15) * 3;
+                            puntos = ((int)totalimpuestos(suma) / 15) * 3;
                             sumapuntos += puntos;
                         }
                         break;
 
                 }
-                imprimirfactura(nit, nombrecliente, suma, productofac, email, efeotar, puntos, sumarfac);
+                imprimirfactura(nit, nombrecliente, suma, productofac, email, efeotar, puntos, sumarfac , sumaproducto);
                 Console.ReadKey();
 
             }
@@ -336,5 +281,88 @@ namespace Proyecto_01
                 Console.WriteLine(ex.Message);
             }
         }
+        public string preguntarsino()
+        {
+            string sino = "";
+            bool repetir = false;
+            while (repetir != true)
+            {
+                Console.WriteLine("¿Desea ingresar más producto? si/no");
+                sino = Console.ReadLine();
+                if (sino != "si" && sino != "no")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Debe ingresar si o no....");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                else
+                {
+                    repetir = true;
+                }
+            }
+            return sino;
+        }
+        public double totalimpuestos(double suma)
+        {
+            double sumaimpuestos = suma + impuestos();
+            return sumaimpuestos = Math.Round(sumaimpuestos,2);
+        }
+
+        public double impuestos()
+        {
+            double impuesto = IVA() + ISR();
+            return impuesto = Math.Round(impuesto,2);
+        }
+        public double IVA()
+        {
+            double iva = suma * 0.12;
+            return iva = Math.Round(iva,2);
+        }
+        public double ISR()
+        {
+            double isr = suma * 0.05;
+            return isr = Math.Round(isr, 2);
+        }
+        public void imprimirfactura(string nit, string nombrecliente, double suma, string[] productofac,string email, string efeotar, int puntos, int totalproducto, string[] sumaaproducto)
+        {
+            Console.Clear();
+            Console.WriteLine("-------------------------PublicMart------------------------- \n");
+            Console.WriteLine("Fecha de la factura: " + (DateTime.Now.ToString("dd/MM/yyyy")));
+            Console.WriteLine("Número de nit " + nit);
+            Console.WriteLine("Nombre del cliente: " + nombrecliente + "\n");
+            Console.WriteLine("---------------------------Lista---------------------------- \n");
+            Console.WriteLine(productofac[0] + "" + sumaaproducto[0]);
+            Console.WriteLine(productofac[1] + "" + sumaaproducto[1]);
+            Console.WriteLine(productofac[2] + "" + sumaaproducto[2]);
+            Console.WriteLine(productofac[3] + "" + sumaaproducto[3]);
+            Console.WriteLine(productofac[4] + "" + sumaaproducto[4] + "\n");
+            Console.WriteLine("-------------------------Información------------------------\n");
+            Console.WriteLine("El subtotal es: Q" + suma);
+            Console.WriteLine("La cantidad de productos es: " + totalproducto);
+            Console.WriteLine("Una copia de la factura se enviará al correo: " + email);
+            Console.WriteLine("El método de pago es: " + efeotar + "\n");
+            if (efeotar == "Tarjeta de credito")
+            {
+                Console.WriteLine("El total de puntos  acumulados es: " + puntos + "\n");
+            }
+            Console.WriteLine("--------------------------Impuestos------------------------\n");
+            Console.WriteLine("Impuestos de IVA: Q" + IVA());
+            Console.WriteLine("Impuestos de IRS: Q" + ISR());
+            Console.WriteLine("Los total de los impuestos es: Q" + impuestos());
+            Console.WriteLine("El total incluyendo impuestos es: Q" + (suma + impuestos()) + "\n");
+            Console.WriteLine("----------------------Factura No." + numfactura(puntos, totalproducto) + "----------------------");
+        }
+        public string numfactura(int puntos, int cantidad)
+        {
+            Random rnd = new Random();
+            int num = rnd.Next(1, 1000);
+            int numerofactura = (((2 * num) + (puntos * puntos)) + (2021 * cantidad)) % 10000;
+            string numeroCadena = numerofactura.ToString().PadLeft(4, '0');
+            return numeroCadena;
+        }
+        
+
+       
     }
 }
