@@ -10,6 +10,7 @@ namespace Proyecto_01
 {
     internal class menu
     {
+
         public void bienvenida()
         {
             Console.WriteLine("¡Bienvenido al Supermercado PublicMart!");
@@ -20,11 +21,14 @@ namespace Proyecto_01
         }
         static void Main(string[] args)
         {
+            Facturacion facturar = new Facturacion();
             menu menu = new menu();
-            //menu.bienvenida();
+            Reporte reporte = new Reporte();
+            menu.bienvenida();
             int opcion = 0;
             do
             {
+                opcion = 0;
                 Console.Clear();
                 Console.WriteLine("-----------Menú------------");
                 Console.WriteLine("1.Facturacion");
@@ -37,37 +41,32 @@ namespace Proyecto_01
                     if (opcion < 1 || opcion > 3)
                     {
                         Console.Clear();
-                        throw new Exception("Debe ingresar un número....");
+                        throw new Exception("Debe ingresar un número entre 1 y 3....");
                     }
-                    else
-                    {
-                        switch (opcion)
-                        {
-                            case 1:
-                                Facturacion facturar = new Facturacion();
-                                facturar.facturar();
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                        }
-                    }
-                   
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
                     Console.Clear();
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(e.Message);
                     Console.ReadKey();
                 }
+                switch (opcion)
+                {
+                    case 1:
+                        facturar.volverafacturar();
+                        break;
+                    case 2:
+                        reporte.reporte();
+                        break;
+                    case 3:
+                        break;
+                }
+
             }
             while (opcion != 3);
             Console.Clear();
             Console.WriteLine("¡Nos vemos!, regrese pronto.");
             Thread.Sleep(2500);
-                        
-            
             
         }
     }
